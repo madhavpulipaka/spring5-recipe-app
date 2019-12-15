@@ -19,6 +19,7 @@ public class Recipe {
     private Integer servings;
     private String source;
     private String url;
+    @Lob
     private String directions;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
@@ -142,4 +143,11 @@ public class Recipe {
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
+    
+    public void addIngredient(Ingredient ingredient)
+    {
+    	this.ingredients.add(ingredient);
+    	ingredient.setRecipe(this);
+    }
+    
 }
